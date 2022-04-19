@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Projectt>
+
+@{ ViewData["Title"] = "Projectt List"; }
+@await Html.PartialAsync("~/Views/_References/_viewEmployee.cshtml")
+
+<div id="PlaceHolderHere"></div>
+
+
+@section scripts {
+    <script src="~/js/customScript.js"></script>
+}
+
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Project List</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable-line">
+
+                    <div class="tab-content">
+                        <div class="tab-pane active fontawesome-demo" id="tab1">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-box">
+                                        <div class="card-head">
+                                            <header>All Project List</header>
+                                            <div class="tools">
+                                                <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                                                <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                                                <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="row">
+                                                <button type="button" class="btn btn-primary m-1" style="width:auto" data-toggle="ajax-modal" data-target="#addModal"
+                                                        data-url="@Url.Action("Create")">
+                                                    Create New Project
+                                                </button>
+                                            </div>
+                                            <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Project No:</th>
+                                                        <th>Project Name</th>
+
+                                                      
+
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var Projectt in Model)
+                                                    {
+                                        <tr></tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>@Projectt.DpartmentID</td>
+                                                            <td>@Projectt.ProjecttName.</td>
+
+                                                           
+                                                            <td> 
+                                                                <form asp-action="Delete" asp-controller="Projectt" asp-route-id="@Projectt.DpartmentID" method="post">
+
+                                                                    <button type="button" class="btn btn-primary m-1" style="width:auto" data-toggle="ajax-modal" data-target="#addModal"
+                                                                            data-url="@Url.Action($"Edit/{Projectt.DpartmentID}")">
+                                                                        Edit
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Project')">Delete</button>
+                                                                </form>
+                                                            </td>
+
+
+
+                                                        </tr>
+}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page content -->

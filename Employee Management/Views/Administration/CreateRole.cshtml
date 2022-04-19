@@ -1,0 +1,69 @@
+﻿@model CreateRoleViewModel
+
+@{ ViewData["Title"] = "CreateRole"; }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });</script>
+}
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Create Role</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card card-box">
+                    <div class="card-head">
+                        <header>Basic Information</header>
+
+                    </div>
+                    <div class="card-body" id="bar-parent">
+                        <form asp-action="CreateRole">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        RoleName
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        @*<label asp-for="RoleName" class="control-label"></label>*@
+                                        <input placeholder="Role" required="required" asp-for="RoleName" class="form-control" />
+                                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="offset-md-3 col-md-9">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary">Submit</button>
+                                            <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page content -->

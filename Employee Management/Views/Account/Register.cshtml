@@ -1,0 +1,125 @@
+﻿@model RegisterViewModel
+
+@{ ViewData["Title"] = "Register Emplopyee"; }
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Add User</div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card card-box">
+                    <div class="card-head">
+                        <header>Basic Information</header>
+
+                     
+                    </div>
+                    <div class="card-body" id="bar-parent">
+                        <form method="post" asp-action="Register">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        First Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        @*<label asp-for="Name" class="control-label"></label>*@
+                                        <input required="required" placeholder="Name" asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        Email
+                                        <span class="required"> * </span>
+                                    </label>
+
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            @*<label asp-for="Email" class="control-label"></label>*@
+                                            <input  placeholder="Email" required="required" asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        City
+                                        <span class="required"> * </span>
+                                    </label>
+
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            @*<label asp-for="City" class="control-label"></label>*@
+                                            <input  placeholder="City"  required="required" asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        Password
+                                        <span class="required"> * </span>
+                                    </label>
+
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            @*<label asp-for="Password" class="control-label"></label>*@
+                                            <input  placeholder="Password" required="required" asp-for="Password" class="form-control" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        ConfirmPassword
+                                        <span class="required"> * </span>
+                                    </label>
+
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            @*<label asp-for="ConfirmPassword" class="control-label"></label>*@
+                                            <input placeholder="ConfirmPassword"  required="required" asp-for="ConfirmPassword" class="form-control" />
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+
+
+
+
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="offset-md-3 col-md-9">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary">Submit</button>
+                                            <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page content -->

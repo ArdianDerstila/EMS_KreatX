@@ -1,0 +1,312 @@
+﻿@model dashboardClass
+@inject SignInManager<ApplicationUser> signInManager;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Welcome <a style="color:blue">@User.Identity.Name</a> to Dashboard</div>
+                </div>
+               
+            </div>
+        </div>
+        <!-- start widget -->
+        <div class="state-overview">
+            <div class="row">
+
+
+
+                <div class="col-xl-3 col-md-6 col-12">
+                    <div class="info-box bg-b-yellow">
+                        <span class="info-box-icon push-bottom"><i data-feather="users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-title">Total Employees</span>
+                            <span class="info-box-number"><strong style="color:white;font-size:30px">@Model.EmployeeList.Count()</strong></span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                            <span class="progress-description">
+                                48% Increase in 28 Days
+                            </span>
+                        </div>
+                        <div class="card-footer text-secondary">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary" style="width:auto;position:center">Employee List</a>
+                        </div>
+
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+
+
+
+
+
+                <div class="col-xl-3 col-md-6 col-12">
+                    <div class="info-box bg-b-green">
+                        <span class="info-box-icon push-bottom"><i data-feather="users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-title">Total Project</span>
+                            <span class="info-box-number">@Model.ProjecttList.Count()</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 45%"></div>
+                            </div>
+                            <span class="progress-description">
+                                45% Increase in 28 Days
+                            </span>
+                        </div>
+                        <div class="card-footer text-secondary">
+                            <a asp-controller="Projectt" asp-action="Index" class="btn btn-primary" style="width:auto">Projectt List</a>
+                        </div>
+
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <div class="info-box bg-b-blue">
+                            <span class="info-box-icon push-bottom"><i data-feather="users"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-title">Total Tasks</span>
+                                <span class="info-box-number">@Model.PositionList.Count()</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    39% Increase in 28 Days
+                                </span>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <a asp-controller="Position" asp-action="Index" class="btn btn-primary" style="width:auto">Position List</a>
+                            </div>
+
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                }
+
+
+
+
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <div class="info-box bg-b-pink">
+                            <span class="info-box-icon push-bottom"><i data-feather="users"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-title">Schedule List</span>
+                                <span class="info-box-number">@Model.ScheduleList.Count()</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 45%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    45% Increase in 28 Days
+                                </span>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <a asp-controller="Schedule" asp-action="Index" class="btn btn-primary" style="width:auto">Position List</a>
+                            </div>
+
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+
+                </div>
+
+        </div>
+        <!-- end widget -->
+        
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card  card-box">
+                    <div class="card-head">
+                        <header>New Employee List</header>
+                        <div class="tools">
+                            <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                            <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="table-wrap">
+                            <div class="table-responsive">
+                                <table class="table display product-overview mb-30" id="support_table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Assigned Professor</th>
+                                            <th>Date Of Admit</th>
+                                            <th>Fees</th>
+                                            <th>Branch</th>
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Jens Brincker</td>
+                                            <td>Kenny Josh</td>
+                                            <td>27/05/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-success">paid</span>
+                                            </td>
+                                            <td>Mechanical</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Mark Hay</td>
+                                            <td> Mark</td>
+                                            <td>26/05/2017</td>
+                                            <td>
+                                                <span class="label label-sm label-warning">
+                                                    unpaid
+                                                </span>
+                                            </td>
+                                            <td>Science</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Anthony Davie</td>
+                                            <td>Cinnabar</td>
+                                            <td>21/05/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-success ">paid</span>
+                                            </td>
+                                            <td>Commerce</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>David Perry</td>
+                                            <td>Felix </td>
+                                            <td>20/04/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-danger">unpaid</span>
+                                            </td>
+                                            <td>Mechanical</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Anthony Davie</td>
+                                            <td>Beryl</td>
+                                            <td>24/05/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-success ">paid</span>
+                                            </td>
+                                            <td>M.B.A.</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Alan Gilchrist</td>
+                                            <td>Joshep</td>
+                                            <td>22/05/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-warning ">unpaid</span>
+                                            </td>
+                                            <td>Science</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Mark Hay</td>
+                                            <td>Jayesh</td>
+                                            <td>18/06/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-success ">paid</span>
+                                            </td>
+                                            <td>Commerce</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>Sue Woodger</td>
+                                            <td>Sharma</td>
+                                            <td>17/05/2016</td>
+                                            <td>
+                                                <span class="label label-sm label-danger">unpaid</span>
+                                            </td>
+                                            <td>Mechanical</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="tblEditBtn">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="tblDelBtn">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<!-- end page content -->

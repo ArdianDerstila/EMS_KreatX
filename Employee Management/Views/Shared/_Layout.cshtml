@@ -1,0 +1,346 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+@await Html.PartialAsync("~/Views/_References/_LayoutReferences.cshtml")
+@RenderSection("Scripts", required: false)
+
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+<head>
+
+</head>
+<!-- END HEAD -->
+
+<body onload="getimage()" class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+    <div class="page-wrapper">
+        <!-- start header -->
+        <div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner ">
+                <!-- logo start -->
+                <div class="page-logo">
+                    <a href="@Url.Action("Index", "Dashboard")">
+                        <span>EMS</span>
+
+                    </a>
+                </div>
+                <!-- logo end -->
+                <ul class="nav navbar-nav navbar-left in">
+                    <li><a href="#" class="menu-toggler sidebar-toggler"><i data-feather="menu"></i></a></li>
+                </ul>
+
+                <!-- start mobile menu -->
+                <a class="menu-toggler responsive-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- end mobile menu -->
+                <!-- start header menu -->
+
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a class="fullscreen-btn"><i data-feather="maximize"></i></a></li>
+
+
+
+                        <!-- start manage user dropdown -->
+                        <li class="dropdown dropdown-user">
+                            <a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img class="img-circle" id="ItemImage" alt="image" src="~/assets/img/user/user5.jpg">
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                    <span class="username username-hide-on-mobile">
+                        @User.Identity.Name
+                    </span>}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="@Url.Action("Profile", "User")">
+                                        <i class="icon-user"></i> Profile
+                                    </a>
+                                </li>
+
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-lock"></i> Lock
+                                    </a>
+                                </li>
+                                <li>
+                                    @*<a href="@Url.Action("Login", "Account")">
+                                            <i class="icon-logout"></i> Log Out
+                                        </a>*@
+                                    <form method="post" asp-action="Logout" asp-controller="Account">
+                                        <button class="btn-danger" type="submit">
+                                            Logout @User.Identity.Name
+                                        </button>
+
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- start page container -->
+        <div class="page-container">
+            <!-- start sidebar menu -->
+            <div class="sidebar-container">
+                <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+                    <div id="remove-scroll" class="left-sidemenu">
+                        <ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                            <li class="sidebar-toggler-wrapper hide">
+                                <div class="sidebar-toggler">
+                                    <span></span>
+                                </div>
+                            </li>
+                            <li class="sidebar-user-panel">
+                                <div class="sidebar-user">
+                                    <div class="sidebar-user-picture">
+                                        <img alt="image" src="~/assets/img/user/user5.jpg">
+                                    </div>
+                                    <div class="sidebar-user-details">
+                                        <div class="user-name">@User.Identity.Name</div>
+
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i data-feather="user"></i>
+                                    <span class="title">Employee</span> <span></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index","Home")" class="nav-link ">
+                                            <span class="title">
+                                                All
+                                                Employees
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Create","Home")" class="nav-link ">
+                                            <span class="title">
+                                                Add
+                                                Employee
+                                            </span>
+                                        </a>
+                                    </li>
+                                    @*<li class="nav-item">
+                    <a href="@Url.Action("Profile","User")" class="nav-link ">
+                        <span class="title">
+                            View
+                            Profile
+                        </span>
+                    </a>
+                </li>*@
+
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i data-feather="book"></i>
+                                    <span class="title">Projects</span><span></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index","Projectt")" class="nav-link ">
+                                            <span class="title">
+                                                All
+                                                Projects
+                                            </span>
+                                        </a>
+                                    </li>
+                                    @*<li class="nav-item">
+                    <a href="@Url.Action("Edit","Project")" class="nav-link ">
+                        <span class="title">
+                            Add
+                            Projects
+                        </span>
+                    </a>
+                </li>*@
+
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i data-feather="book-open"></i>
+                                    <span class="title">Tasks</span> <span></span>
+                                </a>
+                                <ul class="sub-menu">
+
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "Position")" class="nav-link ">
+                                            <span class="title">
+                                                All Task
+                                            </span>
+                                        </a>
+                                    </li>
+
+
+
+                                    @*<li class="nav-item">
+                    <a href="@Url.Action("Create", "Position")" class="nav-link ">
+                        <span class="title">
+                            Edit Tasks
+                        </span>
+                    </a>
+                </li>*@
+
+
+
+
+                                </ul>
+                            </li>
+
+
+                            @*<li class="nav-item">
+            <a href="@Url.Action("Index","Home")" class="nav-link nav-toggle">
+                <i data-feather="maximize"></i>
+                <span class="title">View All Tasks</span><span></span>
+            </a>
+
+
+
+        </li>*@
+
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i data-feather="menu"></i>
+                                    <span class="title">
+                                        Schedule
+                                    </span> <span></span>
+                                </a>
+                                <ul class="sub-menu">
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index","Schedule")" class="nav-link ">
+                                            <span class="title">
+                                                Schedule List
+                                            </span>
+                                        </a>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-toggle">
+                                <i data-feather="user"></i>
+                                <span class="title">
+                                    Profile
+                                </span> <span></span>
+                            </a>
+                            <ul class="sub-menu">
+
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ListUsers", "Administration")" class="nav-link ">
+                                        <span class="title">
+                                            List Users
+                                        </span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+
+                        </li>
+}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-toggle">
+                                <i data-feather="menu"></i>
+                                <span class="title">
+                                    Admin
+                                </span> <span></span>
+                            </a>
+
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Register", "Account")" class="nav-link ">
+                                        <span class="title">
+                                            Add New User
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("CreateRole", "Administration")" class="nav-link ">
+                                        <span class="title">
+                                            Create Role
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ListRoles", "Administration")" class="nav-link ">
+                                        <span class="title">
+                                            List Role
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+            @RenderBody()
+
+
+            <div class="page-footer">
+                <div class="page-footer-inner">
+                    &copy;2022
+                    <a href="" target="_top" class="makerCss">A.D</a>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

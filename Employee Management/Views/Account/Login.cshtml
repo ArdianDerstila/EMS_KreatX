@@ -1,0 +1,59 @@
+﻿@model LoginViewModel
+@{Layout = null; }
+@{ ViewData["Title"] = "Login Employee"; }
+
+@await Html.PartialAsync("~/Views/_References/_ReferencesLogin.cshtml")
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+<div class="main">
+    <!-- Sing in  Form -->
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="~/assets/img/pages/signin.jpg" alt="sing up image"></figure>
+                    @*<a href="sign_up.html" class="signup-image-link">Create an account</a>*@
+                </div>
+                <div class="signin-form">
+                    <h2 class="form-title">Login</h2>
+
+                    <form method="post" asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           
+                            <label class="form-check-label" asp-for="RememberMe">
+                                <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                            </label>
+                        </div>
+                        <div class="form-group form-button">
+                            <button class="btn btn-round btn-primary" type="submit">Login</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

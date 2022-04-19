@@ -1,0 +1,151 @@
+﻿@model EmployeeCreateViewModel
+
+@{ ViewData["Title"] = "Create"; }
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+}
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Add Employee</div>
+                </div>
+                @*<ol class="breadcrumb page-breadcrumb pull-right">
+                    <li>
+                        <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a class="parent-item" href="">Student</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Add Student</li>
+                </ol>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card card-box">
+                    <div class="card-head">
+                        <header>Basic Information</header>
+                       
+                        @*<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
+                            <li class="mdl-menu__item">
+                                <i class="material-icons">assistant_photo</i>Action
+                            </li>
+                            <li class="mdl-menu__item">
+                                <i class="material-icons">print</i>Another action
+                            </li>
+                            <li class="mdl-menu__item">
+                                <i class="material-icons">favorite</i>Something else
+                                here
+                            </li>
+                        </ul>*@
+                    </div>
+                    <div class="card-body" id="bar-parent">
+                        <form enctype="multipart/form-data" asp-action="Create" method="post">
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        First Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        @*<label asp-for="Name" class="control-label"></label>*@
+                                        <input required="required" placeholder="Name" asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">
+                                        Email
+                                        <span class="required"> * </span>
+                                    </label>
+                                   
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            @*<label asp-for="Email" class="control-label col-md-3"><span class="required">Email * </span></label>*@
+                                            <input required="required" placeholder="Email" asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label asp-for="ProjecttID" class="control-label col-md-3">Projectt *</label>
+                                    <div class="col-md-5">
+                                        <select required="required" class="form-select input-height" asp-for="ProjecttID" asp-items="@(new SelectList(Model.ProjecttList,"DpartmentID","ProjecttName"))">
+                                            <option value="">Please Select</option>
+                                            <option value="1">...</option>
+                                        </select>
+                                        <span asp-validation-for="ProjecttID" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label asp-for="PositionID" class="control-label col-md-3">Position *</label>
+                                    <div class="col-md-5">
+                                        <select required="required" class="form-select input-height" asp-for="PositionID" asp-items="@(new SelectList(Model.PositionList,"PositionID","PositionName"))">
+                                            <option value="">Please Select</option>
+                                            <option value="1">...</option>
+                                        </select>
+                                        <span asp-validation-for="PositionID" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label asp-for="ScheduleID" class="control-label col-md-3">Schedule *</label>
+                                    <div class="col-md-5">
+                                        <select required="required" asp-for="ScheduleID" asp-items="@Model.ScheduleList" class="form-select input-height">
+                                            <option value="">Please Select</option>
+                                            <option value="1">...</option>
+                                        </select>
+                                        <span asp-validation-for="ScheduleID" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group row">
+                                    
+                                    <label asp-for="Photo" class="control-label col-md-3">
+                                        Profile Picture
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input  asp-for="Photo" class="form-control custom-file-input" />
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="offset-md-3 col-md-9">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary">Submit</button>
+                                            <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page content -->
